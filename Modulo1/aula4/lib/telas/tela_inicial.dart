@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 
-class TelaInicial extends StatelessWidget {
-  const TelaInicial({Key? key}) : super(key: key);
+class TelaInicial extends StatefulWidget {
+  TelaInicial({Key? key}) : super(key: key);
+
+  @override
+  State<TelaInicial> createState() => _TelaInicialState();
+}
+
+class _TelaInicialState extends State<TelaInicial> {
+  String texto = 'Inicial';
 
   void funcaoBotao() {
-    print("IconButton Pressed");
+    setState(() {
+      texto += 'A';
+    });
+    print(texto);
   }
 
   @override
@@ -30,10 +40,23 @@ class TelaInicial extends StatelessWidget {
           backgroundColor: const Color.fromARGB(255, 0, 92, 48),
         ),
         body: Container(
-          color: Color.fromARGB(255, 0, 183, 207),
-          margin: const EdgeInsets.symmetric(vertical: 8),
+          color: Color.fromARGB(255, 22, 23, 23),
+          margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
           height: 100,
+          width: 700,
           padding: const EdgeInsets.all(8),
+          child: Text(
+            texto, // Variável da classe TelaInicial
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            textDirection: TextDirection.ltr,
+            style: TextStyle(
+              fontFamily: 'Roboto',
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            ),
+          ),
         ));
   }
 }
