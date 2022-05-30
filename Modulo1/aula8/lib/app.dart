@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'telas/tela1.dart';
+import 'telas/tela2.dart';
 import 'telas/tela_inicial.dart';
 
 class App extends StatelessWidget {
@@ -10,7 +12,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.blue,
       ),
       home: TelaInicial(),
       debugShowCheckedModeBanner: false,
