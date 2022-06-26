@@ -1,27 +1,52 @@
 $("#console").on("keyup", function(e) {
-    console.log("O valor do select mudou para: " + $("#console").val());
-    console.log("key code: " + e.keyCode);
+    sendToBackLayer(e);
+    // console.log("O valor do select mudou para: " + $("#console").val());
+    // console.log("key code: " + e.keyCode);
     if (e.keyCode == 8 && e.ctrlKey) {
         $("#console").val("");
     }
     if (e.keyCode == 13 && e.ctrlKey) {
-        alert("iniciar?");
-        loading(true);
+        //alert("iniciar?");
+        //loading(true);
         fetchSQL();
-        loading(false);
-        alert("terminar?");
+        //loading(false);
+        //alert("terminar?");
     }
 
     if ((e.keyCode == 32) && e.ctrlKey) {
-        $("#console").val(parseSQL($("#console").val()));
+        //$("#console").val(parseSQL($("#console").val()));
     }
 });
+
+
+function sendToBackLayer(e){
+    var input = $("#console").val();
+    var arrayWords = input.split(" ");
+    var outputArrayWords = [];
+    $("#console-output").html()
+
+    for(var i = 0; i < arrayWords.length; i++){
+        if(arrayWords[i].toLocaleLowerCase() == "select"){            
+            var element = $("<span>").attr({id: 'keyword_'+i, class: 'keyword'}).text(arrayWords[i].toUpperCase());
+            outputArrayWords.push(element);
+        }else{
+            var element = $("<span>").attr({id: 'word_'+i, class: 'word'}).text(arrayWords[i]);
+            outputArrayWords.push(element);
+        }
+    }
+    
+    for(var i = 0; i < outputArrayWords.length; i++){
+        var word = outputArrayWords[i];
+        $("#console-output").append(word);
+    }
+    
+}
 
 function fetchSQL(){
     
     var result = [];
     var nrCols = 50;
-    var nrRows = 10000;
+    var nrRows = 500;
     
     var thead = [];
 
